@@ -42,51 +42,22 @@ public class PlayerMovement : MonoBehaviour
 		desiredForward = transform.forward;
 	}
 
-	private void OnEnable()
-	{
-		if (AirConsole.instance)
-		{
-			AirConsole.instance.onMessage += OnMessage;
-		}
-	}
-
-	private void OnDisable ()
-	{
-		if (AirConsole.instance)
-		{
-			AirConsole.instance.onMessage -= OnMessage;
-		}
-	}
-
-	private void OnMessage(int from, JToken data)
-	{
-		if (from != owner.DeviceId)
-			return;
-
-		Debug.Log(data.ToString());
-
-		float aimX = 0f;
-		float aimY = 0f;
-
-		var moveX = data["view-0-section-5-element-0"]["message"]["key"].Value<float>();
-		var moveY = data["view-0-section-5-element-0"]["message"]["key"].Value<float>();
-//
-//		var aimX = data["joystick-right"]["message"]["x"].Value<float>("y");
-//		var aimY = data["joystick-right"]["message"]["y"].Value<float>("y");
-//
-//		Move(moveX, moveY, 0f, 0f);
-	}
-
-	#if UNITY_EDITOR
 	private void Update()
 	{
-		if (owner.HasAirControllerPlayer)
-			return;
-		
-		// Editor movement
-		Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetAxis("Aim X"), Input.GetAxis("Aim Y"));
+		if (owner.HasAirConsolePlayer && Toolbox.Input.HasController(owner.DeviceId))
+		{
+			// AirConsole movement
+			var controller = Toolbox.Input.GetController(owner.DeviceId);
+			Move(controller.Move.X, controller.Move.Y, controller.Aim.X, controller.Aim.Y);
+		}
+		#if UNITY_EDITOR
+		else
+		{
+			// Editor movement
+			Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetAxis("Aim X"), Input.GetAxis("Aim Y"));
+		}
+		#endif
 	}
-	#endif
 
 	// From Skyfall: Judgement Day
 	private void Move(float moveX, float moveY, float aimX, float aimY)

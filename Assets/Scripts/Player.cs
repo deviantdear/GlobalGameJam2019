@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 	/// Gets a value indicating whether this instance is controlled by an AirController player.
 	/// </summary>
 	/// <value><c>true</c> if this instance has air controller player; otherwise, <c>false</c>.</value>
-	public bool HasAirControllerPlayer
+	public bool HasAirConsolePlayer
 	{
 		get
 		{
