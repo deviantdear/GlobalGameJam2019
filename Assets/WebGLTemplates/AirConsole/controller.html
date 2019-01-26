@@ -17,33 +17,34 @@
   <div id="controller-container">
 
     <!-- REPLACE_HERE START -->
-	<div id="view-0" class="view" style="display: flex;">
+    <div id="view-0" class="view" style="display: flex;">
         <div id="view-0-section-0" class="section " style="height: 100%;">
-        <div id="dpad-left" class="dpad-relative-container">
-      <div class="dpad-relative" style="position: absolute; left: 10px; right: 10px; top: 10px; bottom: 10px;">
-        <div class="dpad-arrow dpad-arrow-up"></div>
-        <div class="dpad-arrow dpad-arrow-down"></div>
-        <div class="dpad-arrow dpad-arrow-left"></div>
-        <div class="dpad-arrow dpad-arrow-right"></div>
-      </div>
-    </div>
-    </div>
-        <div id="view-0-section-1" class="section " style="height: 100%;">
-        <div id="dpad-right" class="dpad-relative-container">
-      <div class="dpad-relative" style="position: absolute; left: 10px; right: 10px; top: 10px; bottom: 10px;">
-        <div class="dpad-arrow dpad-arrow-up"></div>
-        <div class="dpad-arrow dpad-arrow-down"></div>
-        <div class="dpad-arrow dpad-arrow-left"></div>
-        <div class="dpad-arrow dpad-arrow-right"></div>
-      </div>
-    </div>
-    </div>
+            <div id="dpad-left" class="dpad-absolute-container">
+                <div class="dpad-absolute" style="position: static;">
+                    <div class="dpad-arrow dpad-arrow-up"></div>
+                    <div class="dpad-arrow dpad-arrow-down"></div>
+                    <div class="dpad-arrow dpad-arrow-left"></div>
+                    <div class="dpad-arrow dpad-arrow-right"></div>
+                </div>
+            </div>
+        </div>
+        <div id="view-0-section-2" class="section " style="height: 100%;">
+            <div id="dpad-right" class="dpad-absolute-container">
+                <div class="dpad-absolute" style="position: static;">
+                    <div class="dpad-arrow dpad-arrow-up"></div>
+                    <div class="dpad-arrow dpad-arrow-down"></div>
+                    <div class="dpad-arrow dpad-arrow-left"></div>
+                    <div class="dpad-arrow dpad-arrow-right"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
     <script type="text/javascript">
-      var ctrl_data = '{"orientation":"landscape","selected_view_id":"view-0","views":[{"id":"view-0","sections":[{"id":"view-0-section-0","elements":[{"id":"dpad-left","key":"dpad_relative","name":"DPad Relative","tmpl":"dpad","constructor_fn":"DPadRelativeElement","options":{"constructor_args":{"diagonal":true},"attr_id":"view-0-section-0-element-0","css_classes":"","view_action":{"target":null,"view_id":null}}}],"classes":[]},{"id":"view-0-section-1","elements":[{"id":"dpad-right","key":"dpad_relative","name":"DPad Relative","tmpl":"dpad","constructor_fn":"DPadRelativeElement","options":{"constructor_args":{"diagonal":true},"attr_id":"view-0-section-1-element-0","css_classes":"","view_action":{"target":null,"view_id":null}}}],"classes":[]}]}]}';
+        var ctrl_data = '{"orientation":"landscape","selected_view_id":"view-0","views":[{"id":"view-0","sections":[{"id":"view-0-section-0","elements":[{"id":"dpad-left","key":"dpad_absolute","name":"DPad Absolute","tmpl":"dpad","constructor_fn":"DPadAbsoluteElement","options":{"constructor_args":{"diagonal":false},"attr_id":"view-0-section-0-element-0","css_classes":"","view_action":{"target":null,"view_id":null}}}],"classes":[]},{"id":"view-0-section-2","elements":[{"id":"dpad-right","key":"dpad_absolute","name":"DPad Absolute","tmpl":"dpad","constructor_fn":"DPadAbsoluteElement","options":{"constructor_args":{"diagonal":true},"attr_id":"view-0-section-2-element-0","css_classes":"","view_action":{"target":null,"view_id":null}}}],"classes":[]}]}]}';
     </script>
+
     <!-- REPLACE_HERE END -->
 
   </div>

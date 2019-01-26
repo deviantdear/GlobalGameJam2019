@@ -34,6 +34,14 @@ public class AirConsoleDPad : IAirConsoleInputReader
 		}
 	}
 
+	public bool Pressed 
+	{
+		get
+		{
+			return !(up || down || left || right);
+		}
+	}
+
 	public AirConsoleDPad(string id)
 	{
 		this.id = id;
