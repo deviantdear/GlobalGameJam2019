@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkitteryNoisebox : MonoBehaviour {
+public class SkitteryNoisebox : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () {

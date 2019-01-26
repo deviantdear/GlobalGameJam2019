@@ -15,7 +15,7 @@ public class CreepyCrawlyNavigator : MonoBehaviour
 	void Start () {
         if (!navMeshAgent)
             navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.updatePosition = false;
+        //navMeshAgent.updatePosition = false;
 
         navMeshAgent.SetDestination(target);
 
