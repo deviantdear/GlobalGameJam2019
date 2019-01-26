@@ -28,6 +28,13 @@ public class CreepyCrawlyNavigator : MonoBehaviour
             NavAgentAnimation();
 	}
 
+    // Smash this dead function to stop the creeper from crawling
+    public void Dead()
+    {
+        //navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+    }
+
     Vector2 smoothDeltaPosition = Vector2.zero;
     Vector2 velocity = Vector2.zero;
     void NavAgentAnimation()

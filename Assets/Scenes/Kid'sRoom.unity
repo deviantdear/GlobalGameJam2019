@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 926273821}
   m_Layer: 0
   m_Name: Paco
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1017,7 +1017,7 @@ GameObject:
   - component: {fileID: 1159674943}
   m_Layer: 0
   m_Name: Pumpkin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1237,7 +1237,7 @@ GameObject:
   - component: {fileID: 1309869810}
   m_Layer: 0
   m_Name: Pixel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1500,6 +1500,7 @@ GameObject:
   - component: {fileID: 1533323329}
   - component: {fileID: 1533323328}
   - component: {fileID: 1533323327}
+  - component: {fileID: 1533323331}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -1576,6 +1577,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1533323331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1533323326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 2.220446e-16, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1557050612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,7 +1852,7 @@ GameObject:
   - component: {fileID: 1761011385}
   m_Layer: 0
   m_Name: Max
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
