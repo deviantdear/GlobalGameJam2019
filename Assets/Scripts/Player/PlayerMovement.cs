@@ -5,7 +5,7 @@ using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerComponent
 {
 	const float InputThreshold = 0.1f;
 
@@ -28,14 +28,8 @@ public class PlayerMovement : MonoBehaviour
 	[MinValue(0f)]
 	private float turnSpeed = 180f;
 
-	private Player owner;
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 desiredForward;
-
-	public void SetOwner(Player owner)
-	{
-		this.owner = owner;
-	}
 
 	private void Awake()
 	{

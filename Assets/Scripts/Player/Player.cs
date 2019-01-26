@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
 	[Tooltip("The PlayerMovement used to move this player.")]
 	private PlayerMovement movement;
 
+	[SerializeField]
+	[Tooltip("The skins affecting this player.")]
+	private PlayerSkin[] skins;
+
 	[Header("Events")]
 	public UnityEvent onInitialize;
 	public UnityEvent onDie;
@@ -56,6 +60,28 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	[Button("Find Movement Component")]
+	private void FindMovementComponent()
+	{
+		var foundMovement = GetComponentInChildren<PlayerMovement>();
+		if (foundMovement != movement)
+		{
+			movement = foundMovement;
+			#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+			#endif
+		}
+	}
+
+	[Button("Find Skin Components")]
+	private void FindSkinComponents()
+	{
+		skins = GetComponentsInChildren<PlayerSkin>();
+		#if UNITY_EDITOR
+		UnityEditor.EditorUtility.SetDirty(this);
+		#endif
+	}
+
 	/// <summary>
 	/// Initialize the player controlled by the specified deviceId.
 	/// </summary>
@@ -65,6 +91,10 @@ public class Player : MonoBehaviour
 		this.deviceId = deviceId;
 		movement.SetOwner(this);
 		movement.enabled = true;
+		foreach (var skin in skins)
+		{
+			skin.SetOwner(this);
+		}
 		onInitialize.Invoke();
 	}
 
