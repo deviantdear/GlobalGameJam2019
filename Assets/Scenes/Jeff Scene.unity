@@ -1313,12 +1313,12 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0,
     type: 2}
-  m_PrefabInternal: {fileID: 1122835031}
+  m_PrefabInternal: {fileID: 2034670937}
 --- !u!114 &562011539 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114913605315648702, guid: accc27327d794a6469a11ee4e26777c0,
     type: 2}
-  m_PrefabInternal: {fileID: 1122835031}
+  m_PrefabInternal: {fileID: 2034670937}
   m_Script: {fileID: 11500000, guid: 6dce3a18191cd944e9a9b4d0084373ec, type: 3}
 --- !u!1 &577429160
 GameObject:
@@ -2243,48 +2243,6 @@ Transform:
   m_Father: {fileID: 1924790850}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -90.00001}
---- !u!1001 &1122835031
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2087113120}
-    m_Modifications:
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.901644
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 7.213833
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.045500845
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.9989643
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1150259476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3295,7 +3253,7 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114322284873171854, guid: accc27327d794a6469a11ee4e26777c0,
     type: 2}
-  m_PrefabInternal: {fileID: 1122835031}
+  m_PrefabInternal: {fileID: 2034670937}
   m_Script: {fileID: 11500000, guid: 14975cbf393331049a88beb2a09ec5ef, type: 3}
 --- !u!1 &1886804570
 GameObject:
@@ -3681,6 +3639,48 @@ Transform:
   m_Father: {fileID: 2087113120}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2034670937
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2087113120}
+    m_Modifications:
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.901644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 7.213833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.045500845
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.9989643
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514666045461788, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: accc27327d794a6469a11ee4e26777c0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &2038300443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3942,7 +3942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameDuration: 150
-  abandonDuration: 10
+  abandonDuration: 15
   newGameDuration: 10
   kid: {fileID: 1876743941}
   spawnPoints:
@@ -3987,6 +3987,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1876743941}
+        m_MethodName: WakeUp
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onLoseGame:
@@ -4003,6 +4014,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1876743941}
+        m_MethodName: WakeUp
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onStartAbandoningGame:
@@ -4010,6 +4032,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562011539}
         m_MethodName: set_IsDamageable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 562011539}
+        m_MethodName: set_IsHealable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4062,6 +4095,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 562011539}
+        m_MethodName: set_IsHealable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1150259476}
         m_MethodName: SetActive
         m_Mode: 6
@@ -4080,6 +4124,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562011539}
         m_MethodName: set_IsDamageable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 562011539}
+        m_MethodName: set_IsHealable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

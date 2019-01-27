@@ -13,6 +13,11 @@ public class Kid : MonoBehaviour
 	[Tooltip("The kid's Animator.")]
 	private Animator animator;
 
+	[Header("Events")]
+	public UnityEvent onWakeUpHappy = new UnityEvent();
+	public UnityEvent onWakeUpSad = new UnityEvent();
+	public UnityEvent onWakeUp = new UnityEvent();
+
 	public Health Health
 	{
 		get
@@ -66,6 +71,19 @@ public class Kid : MonoBehaviour
 		{
 			game.LoseGame();
 		}
+	}
+
+	public void WakeUp(bool happy)
+	{
+		if (happy)
+		{
+			onWakeUpHappy.Invoke();
+		}
+		else
+		{
+			onWakeUpSad.Invoke();
+		}
+		onWakeUp.Invoke();
 	}
 }
 

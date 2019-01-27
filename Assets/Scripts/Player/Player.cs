@@ -138,10 +138,10 @@ public class Player : MonoBehaviour
 	/// <summary>
 	/// Tell this Player to jump off the bed and die (their player disconnected).
 	/// </summary>
+	[ContextMenu("Die")]
 	public void Die()
 	{
 		isReady = false;
-		animator.SetTrigger("Disconnected");
 		onDie.Invoke();
 	}
 
