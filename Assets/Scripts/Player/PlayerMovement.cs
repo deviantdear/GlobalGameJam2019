@@ -28,8 +28,21 @@ public class PlayerMovement : PlayerComponent
 	[MinValue(0f)]
 	private float turnSpeed = 180f;
 
+	private bool controllable = false;
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 desiredForward;
+
+	public bool Controllable
+	{
+		get
+		{
+			return controllable;
+		}
+		set
+		{
+			controllable = value;
+		}
+	}
 
 	private void Awake()
 	{
@@ -38,19 +51,27 @@ public class PlayerMovement : PlayerComponent
 
 	private void Update()
 	{
-		if (owner.HasAirConsolePlayer && Toolbox.Input.HasController(owner.DeviceId))
+		if (controllable)
 		{
-			// AirConsole movement
-			var controller = Toolbox.Input.GetController(owner.DeviceId);
-			Move(controller.Move.X, controller.Move.Y, controller.Aim.X, controller.Aim.Y);
-		}
+			if (owner.HasAirConsolePlayer && Toolbox.Input.HasController(owner.DeviceId))
+			{
+				// AirConsole movement
+				var controller = Toolbox.Input.GetController(owner.DeviceId);
+				Move(controller.Move.X, controller.Move.Y, controller.Aim.X, controller.Aim.Y);
+			}
 		#if UNITY_EDITOR
 		else
-		{
-			// Editor movement
-			Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetAxis("Aim X"), Input.GetAxis("Aim Y"));
+			{
+				// Editor movement
+				Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetAxis("Aim X"), Input.GetAxis("Aim Y"));
+			}
+			#endif
 		}
-		#endif
+		else
+		{
+			// If not controllable, come to a smooth stop
+			Move(0f, 0f, 0f, 0f);
+		}
 	}
 
 	// From Skyfall: Judgement Day
