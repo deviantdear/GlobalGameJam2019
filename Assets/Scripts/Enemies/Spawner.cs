@@ -29,6 +29,16 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public void BeginSpawning()
+    {
+        autospawn = true;
+    }
+
+    public void StopSpawning()
+    {
+        autospawn = false;
+    }
+
     private void Update()
     {
         if (autospawn)

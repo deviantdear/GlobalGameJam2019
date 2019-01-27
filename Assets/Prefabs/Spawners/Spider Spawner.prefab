@@ -47,7 +47,7 @@ Animation:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1229231549526936}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 5d5211700f1938940a01820fcef6219b, type: 2}
   m_Animations:
@@ -70,7 +70,7 @@ MonoBehaviour:
   spawnRadius: 10
   angleMin: 90
   angleMax: 270
-  autospawn: 1
-  spawnrate: 0.5
+  autospawn: 0
+  spawnrate: 2
   prefab: {fileID: 1917837586206788, guid: 70e45c15fa6f62f4c80674ed862b7163, type: 2}
   spawnContainer: {fileID: 4374734617595968}

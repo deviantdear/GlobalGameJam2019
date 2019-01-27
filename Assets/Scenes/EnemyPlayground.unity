@@ -870,11 +870,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2087113120}
     m_Modifications:
-    - target: {fileID: 111563699449568784, guid: 8946c913394347f47b4ae79752fb1041,
-        type: 2}
-      propertyPath: m_Animations.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4374734617595968, guid: 8946c913394347f47b4ae79752fb1041, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -907,16 +902,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 111563699449568784, guid: 8946c913394347f47b4ae79752fb1041,
-        type: 2}
-      propertyPath: m_Animation
-      value: 
-      objectReference: {fileID: 7400000, guid: 5d5211700f1938940a01820fcef6219b, type: 2}
-    - target: {fileID: 111563699449568784, guid: 8946c913394347f47b4ae79752fb1041,
-        type: 2}
-      propertyPath: m_Animations.Array.data[0]
-      value: 
-      objectReference: {fileID: 7400000, guid: 5d5211700f1938940a01820fcef6219b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8946c913394347f47b4ae79752fb1041, type: 2}
   m_IsPrefabAsset: 0
@@ -979,6 +964,17 @@ Transform:
 --- !u!4 &746587866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4374734617595968, guid: 8946c913394347f47b4ae79752fb1041,
+    type: 2}
+  m_PrefabInternal: {fileID: 567985138}
+--- !u!114 &746587867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114310351922999144, guid: 8946c913394347f47b4ae79752fb1041,
+    type: 2}
+  m_PrefabInternal: {fileID: 567985138}
+  m_Script: {fileID: 11500000, guid: 41cde662561cbea4195ea8490050b2c5, type: 3}
+--- !u!111 &746587868 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 111563699449568784, guid: 8946c913394347f47b4ae79752fb1041,
     type: 2}
   m_PrefabInternal: {fileID: 567985138}
 --- !u!1 &769918714
@@ -2001,12 +1997,45 @@ MonoBehaviour:
   - {fileID: 59430334}
   onStartGame:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 746587867}
+        m_MethodName: BeginSpawning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 746587868}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onWinGame:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 746587867}
+        m_MethodName: StopSpawning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onLoseGame:
@@ -2031,7 +2060,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   onEndGame:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 746587867}
+        m_MethodName: StopSpawning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!4 &2087113120
