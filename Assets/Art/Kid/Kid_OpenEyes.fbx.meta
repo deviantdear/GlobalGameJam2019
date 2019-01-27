@@ -1,27 +1,15 @@
 fileFormatVersion: 2
-guid: 117eafcb1684e48439fd3242b7ebd160
+guid: ac1fe6e802ee88f47a8f2756a540bfcf
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Kid
-    100002: //RootNode
-    100004: KidEyes:KidEyes
-    400000: Kid
-    400002: //RootNode
-    400004: KidEyes:KidEyes
+    100000: //RootNode
+    400000: //RootNode
     2100000: KidEyes_Kid
-    2300000: Kid
-    2300002: KidEyes:KidEyes
-    3300000: Kid
-    3300002: KidEyes:KidEyes
-    4300000: Kid
-    4300002: KidEyes:KidEyes
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: KidEyes_Kid
-    second: {fileID: 2100000, guid: b028132af32383f4ab48ab88eab3dc4a, type: 2}
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: KidEyes:KidEyes
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

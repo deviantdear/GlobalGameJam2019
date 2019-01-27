@@ -16,14 +16,14 @@ public class Health : MonoBehaviour
 
 	[SerializeField]
 	[Tooltip("Can this object be healed?")]
-	private bool isHealable = true;
+	private bool isHealable = false;
 
-	[SerializeField, ShowIf("isHealable")]
+	[SerializeField]
 	[Tooltip("The amount of health regenerated per second.")]
 	[MinValue(0f)]
 	private float healthRegen = 0f;
 
-	[SerializeField, ShowIf("isHealable")]
+	[SerializeField]
 	[Tooltip("The amount of time before health regen can start.")]
 	[MinValue(0f)]
 	private float healthRegenDelay = 1f;
@@ -53,6 +53,18 @@ public class Health : MonoBehaviour
 		set
 		{
 			isDamageable = value;
+		}
+	}
+
+	public bool IsHealable
+	{
+		get
+		{
+			return isHealable;
+		}
+		set
+		{
+			isHealable = value;
 		}
 	}
 
