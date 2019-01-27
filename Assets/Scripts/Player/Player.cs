@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 	public UnityEvent onUnready = new UnityEvent();
 	public UnityEvent onDie = new UnityEvent();
 
+	private bool isReady = false;
 	private int deviceId = -1;
 
 	/// <summary>
@@ -39,6 +40,18 @@ public class Player : MonoBehaviour
 		get
 		{
 			return animator;
+		}
+	}
+
+	/// <summary>
+	/// Gets a value indicating whether this instance is ready.
+	/// </summary>
+	/// <value><c>true</c> if this instance is ready; otherwise, <c>false</c>.</value>
+	public bool IsReady
+	{
+		get
+		{
+			return isReady;
 		}
 	}
 
@@ -109,13 +122,13 @@ public class Player : MonoBehaviour
 
 	public void Ready()
 	{
-		movement.Controllable = true;
+		isReady = true;
 		onReady.Invoke();
 	}
 
 	public void Unready()
 	{
-		movement.Controllable = false;
+		isReady = false;
 		onUnready.Invoke();
 	}
 
@@ -124,39 +137,42 @@ public class Player : MonoBehaviour
 	/// </summary>
 	public void Die()
 	{
-		movement.Controllable = false;
+		isReady = false;
 		onDie.Invoke();
 	}
 
 	private void Update()
 	{
-		if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))
+		if (isReady)
 		{
-			// AirConsole controls
-			var controller = Toolbox.Input.GetController(DeviceId);
-			if (controller.Aim.Pressed)
+			if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))
 			{
-				weapon.PullTrigger();
+				// AirConsole controls
+				var controller = Toolbox.Input.GetController(DeviceId);
+				if (controller.Aim.Pressed)
+				{
+					weapon.PullTrigger();
+				}
+				else
+				{
+					weapon.ReleaseTrigger();
+				}
 			}
+			#if UNITY_EDITOR
 			else
 			{
-				weapon.ReleaseTrigger();
+				// Editor controls
+				if (Input.GetButton("Shoot"))
+				{
+					weapon.PullTrigger();
+				}
+				else
+				{
+					weapon.ReleaseTrigger();
+				}
 			}
+			#endif
 		}
-		#if UNITY_EDITOR
-		else
-		{
-			// Editor controls
-			if(Input.GetButton("Shoot"))
-			{
-				weapon.PullTrigger();
-			}
-			else
-			{
-				weapon.ReleaseTrigger();
-			}
-		}
-		#endif
 	}
 }
 

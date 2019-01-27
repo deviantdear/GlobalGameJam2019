@@ -43,8 +43,10 @@ public class Game : MonoBehaviour
 	public UnityEvent onStartGame = new UnityEvent();
 	public UnityEvent onWinGame = new UnityEvent();
 	public UnityEvent onLoseGame = new UnityEvent();
-	public UnityEvent onEndGame = new UnityEvent();
+	public UnityEvent onStartAbandoningGame = new UnityEvent();
 	public UnityEvent onAbandonGame = new UnityEvent();
+	public UnityEvent onResumeAbandoningGame = new UnityEvent();
+	public UnityEvent onEndGame = new UnityEvent();
 
 	private Player[] playerPrefabs;
 	private Dictionary<int, Player> players = new Dictionary<int, Player>();
@@ -206,12 +208,14 @@ public class Game : MonoBehaviour
 		Debug.Log("Starting to Abandon Game");
 		state = State.Abandoning;
 		abandonTimeRemaining = abandonDuration;
+		onStartAbandoningGame.Invoke();
 	}
 
 	private void ResumeAbandoningGame()
 	{
 		Debug.Log("Resuming Abandoned Game");
 		state = State.Playing;
+		onResumeAbandoningGame.Invoke();
 	}
 
 	private void AbandonGame()
@@ -245,7 +249,7 @@ public class Game : MonoBehaviour
 		// Notify players of game end
 		foreach (var pair in players)
 		{
-			pair.Value.Ready();
+			pair.Value.Unready();
 		}
 	}
 		
