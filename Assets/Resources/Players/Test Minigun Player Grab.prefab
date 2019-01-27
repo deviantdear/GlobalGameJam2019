@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 95464208811531800}
   - component: {fileID: 114176698165151720}
   m_Layer: 15
-  m_Name: Test Minigun Player
+  m_Name: Test Minigun Player Grab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
