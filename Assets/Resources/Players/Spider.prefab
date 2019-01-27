@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 114580966810113958}
   - component: {fileID: 114076348287804500}
   - component: {fileID: 136532168242351842}
+  - component: {fileID: 114488968920274132}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -818,6 +819,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialContainer: {fileID: 4992455197814882}
   deathEffectTime: 3
+--- !u!114 &114488968920274132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917837586206788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83382a9dc71604f4b95557e7af3f0e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upDistance: 7
+  forwardDistance: 2
+  hopSpeed: 2
 --- !u!114 &114580966810113958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -872,7 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 195020773681408514}
-  target: {x: 0, y: 1, z: 0}
+  target: {x: 0, y: 3.99, z: 7.14}
 --- !u!136 &136532168242351842
 CapsuleCollider:
   m_ObjectHideFlags: 1

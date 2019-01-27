@@ -26,7 +26,7 @@ public class CreepyCrawlyNavigator : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-        if (animator != null)
+        if (animator != null && navMeshAgent.enabled)
             NavAgentAnimation();
 	}
 
@@ -47,5 +47,17 @@ public class CreepyCrawlyNavigator : MonoBehaviour
 
         // Update animation parameters
         animator.SetBool("move", shouldMove);
+    }
+
+    public void Enable()
+    {
+        navMeshAgent.enabled = true;
+        navMeshAgent.SetDestination(target);
+    }
+
+    public void Climb()
+    {
+        navMeshAgent.enabled = false;
+        animator.SetBool("move", true);
     }
 }
