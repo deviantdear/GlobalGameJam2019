@@ -4,10 +4,11 @@ using UnityEngine;
 using NDream.AirConsole;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using NaughtyAttributes;
 
 public class Game : MonoBehaviour 
 {
-	private enum State : byte
+	public enum GameState : byte
 	{
 		WaitingForStart,
 		Playing,
@@ -30,6 +31,10 @@ public class Game : MonoBehaviour
 	[Tooltip("The amount of time until a finished game restarts.")]
 	private float newGameDuration = 10f;
 
+	[SerializeField, Required]
+	[Tooltip("The Kid.")]
+	private Kid kid;
+
 	[Header("Spawning")]
 	[SerializeField]
 	[Tooltip("The spawn points used for players present at the start of the game.")]
@@ -43,15 +48,58 @@ public class Game : MonoBehaviour
 	public UnityEvent onStartGame = new UnityEvent();
 	public UnityEvent onWinGame = new UnityEvent();
 	public UnityEvent onLoseGame = new UnityEvent();
-	public UnityEvent onEndGame = new UnityEvent();
+	public UnityEvent onStartAbandoningGame = new UnityEvent();
 	public UnityEvent onAbandonGame = new UnityEvent();
+	public UnityEvent onResumeAbandoningGame = new UnityEvent();
+	public UnityEvent onEndGame = new UnityEvent();
 
 	private Player[] playerPrefabs;
 	private Dictionary<int, Player> players = new Dictionary<int, Player>();
-	private State state = State.WaitingForStart;
+	private GameState state = GameState.WaitingForStart;
 	private float gameTimeRemaining;
 	private float abandonTimeRemaining;
 	private float newGameTimeRemaining;
+	private string roomCode = string.Empty;
+
+	public Kid Kid
+	{
+		get
+		{
+			return kid;
+		}
+	}
+
+	public GameState State
+	{
+		get
+		{
+			return state;
+		}
+	}
+
+	public float GameTimeRemaining
+	{
+		get
+		{
+			return gameTimeRemaining;
+		}
+	}
+
+	public float AbandonTimeRemaining
+	{
+		get
+		{
+			return abandonTimeRemaining;
+		}
+	}
+
+	public float NewGameTimeRemaining
+	{
+		get
+		{
+			return newGameTimeRemaining;
+		}
+	}
 
 	public float Progress
 	{
@@ -61,9 +109,19 @@ public class Game : MonoBehaviour
 		}
 	}
 
+	public string RoomCode
+	{
+		get
+		{
+			return roomCode;
+		}
+	}
+
 	private void Awake()
 	{
+		gameTimeRemaining = gameDuration;
 		playerPrefabs = Resources.LoadAll<Player>(PlayerPrefabsPath);
+		Toolbox.Game = this;
 	}
 
 	private void OnEnable()
@@ -91,12 +149,12 @@ public class Game : MonoBehaviour
 		// [1]: spawn an editor player with keyboard controls
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			AddNewPlayer(-1);
+			AddNewPlayer(-1, true);
 		}
 		#endif
 
 		// Game state
-		if (state == State.Playing)
+		if (state == GameState.Playing)
 		{
 			gameTimeRemaining -= Time.deltaTime;
 			if (gameTimeRemaining < 0f)
@@ -104,7 +162,7 @@ public class Game : MonoBehaviour
 				WinGame();
 			}
 		}
-		else if (state == State.Abandoning)
+		else if (state == GameState.Abandoning)
 		{
 			abandonTimeRemaining -= Time.deltaTime;
 			if (abandonTimeRemaining < 0f)
@@ -112,7 +170,7 @@ public class Game : MonoBehaviour
 				LoseGame();
 			}
 		}
-		else if (state == State.Completed)
+		else if (state == GameState.Completed)
 		{
 			newGameTimeRemaining -= Time.deltaTime;
 			if (newGameTimeRemaining < 0f)
@@ -122,46 +180,53 @@ public class Game : MonoBehaviour
 		}
 	}
 
-
 	private void HandleReady (string code)
 	{
-		Debug.Log("Game Ready");
-		List<int> connectedDevices = AirConsole.instance.GetControllerDeviceIds();
+		Debug.LogFormat("Game Ready. Code={0}", code);
+		roomCode = code;
+		var connectedDevices = AirConsole.instance.GetControllerDeviceIds();
 		foreach (int deviceId in connectedDevices) 
 		{
-			AddNewPlayer (deviceId);
+			AddNewPlayer (deviceId, false);
 		}
+		UpdateAirConsoleGameState();
 	}
 
 	private void HandleConnect (int deviceId)
 	{
-		AddNewPlayer(deviceId);
+		AddNewPlayer(deviceId, true);
+		UpdateAirConsoleGameState();
 	}
 
-	private void AddNewPlayer(int deviceId)
+	private void AddNewPlayer(int deviceId, bool autoReady)
 	{
 		if (!players.ContainsKey(deviceId))
 		{
 			Debug.LogFormat("Added new player with id {0}", deviceId);
 			// Spawn a random Player character at a random spawn point
 			var prefab = playerPrefabs[Random.Range(0, playerPrefabs.Length)];
-			var spawnPointList = (state == State.Playing) ? dropInSpawnPoints : spawnPoints;
+			var spawnPointList = (state == GameState.Playing || state == GameState.Abandoning) ? dropInSpawnPoints : spawnPoints;
 			var spawnPoint = spawnPointList[Random.Range(0, spawnPointList.Length)];
 			var player = Instantiate<Player>(prefab, spawnPoint.position, spawnPoint.rotation);
-			player.Initialize(deviceId, state == State.Playing);
+			player.Initialize(deviceId, autoReady);
 			players.Add(deviceId, player);
 
-			if (state == State.WaitingForStart)
+			if (state == GameState.WaitingForStart)
 			{
 				// Start game if it's waiting for players
 				StartGame();
 			}
-			else if (state == State.Abandoning)
+			else if (state == GameState.Abandoning)
 			{
 				// Cancel a failing game if it's being abandoned
 				ResumeAbandoningGame();
 			}
 		}
+	}
+
+	private void UpdateAirConsoleGameState()
+	{
+		// TODO: Update the gamestate for all of the players?
 	}
 
 	private void HandleDisconnect (int deviceId)
@@ -174,7 +239,7 @@ public class Game : MonoBehaviour
 		}
 
 		// If all players have left and the game is playing, lose the game after a timer
-		if (state == State.Playing)
+		if (state == GameState.Playing)
 		{
 			StartAbandoningGame();
 		}
@@ -189,7 +254,7 @@ public class Game : MonoBehaviour
 	private void StartGame()
 	{
 		Debug.Log("Game Started");
-		state = State.Playing;
+		state = GameState.Playing;
 		gameTimeRemaining = gameDuration;
 
 		// Notify players of game start
@@ -204,14 +269,16 @@ public class Game : MonoBehaviour
 	private void StartAbandoningGame()
 	{
 		Debug.Log("Starting to Abandon Game");
-		state = State.Abandoning;
+		state = GameState.Abandoning;
 		abandonTimeRemaining = abandonDuration;
+		onStartAbandoningGame.Invoke();
 	}
 
 	private void ResumeAbandoningGame()
 	{
 		Debug.Log("Resuming Abandoned Game");
-		state = State.Playing;
+		state = GameState.Playing;
+		onResumeAbandoningGame.Invoke();
 	}
 
 	private void AbandonGame()
@@ -238,14 +305,14 @@ public class Game : MonoBehaviour
 	private void EndGame()
 	{
 		Debug.Log("Game Over");
-		state = State.Completed;
+		state = GameState.Completed;
 		newGameTimeRemaining = newGameDuration;
 		onEndGame.Invoke();
 
 		// Notify players of game end
 		foreach (var pair in players)
 		{
-			pair.Value.Ready();
+			pair.Value.Unready();
 		}
 	}
 		
