@@ -52,26 +52,30 @@ public class AirConsoleDPad : IAirConsoleInputReader
 
 	public void Process(JToken data)
 	{
-		if (data["element"].ToString().Equals(id))
+		var element = data["element"];
+		if (element != null)
 		{
-			var key = (string)data["data"]["key"];
-			var pressed = (bool?)data["data"]["pressed"];
-			if (pressed.HasValue)
+			if (element.ToString().Equals(id))
 			{
-				switch (key)
+				var key = (string)data["data"]["key"];
+				var pressed = (bool?)data["data"]["pressed"];
+				if (pressed.HasValue)
 				{
-					case "up":
-						up = pressed.Value;
-						break;
-					case "down":
-						down = pressed.Value;
-						break;
-					case "left":
-						left = pressed.Value;
-						break;
-					case "right":
-						right = pressed.Value;
-						break;
+					switch (key)
+					{
+						case "up":
+							up = pressed.Value;
+							break;
+						case "down":
+							down = pressed.Value;
+							break;
+						case "left":
+							left = pressed.Value;
+							break;
+						case "right":
+							right = pressed.Value;
+							break;
+					}
 				}
 			}
 		}
