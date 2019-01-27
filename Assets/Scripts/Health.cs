@@ -10,33 +10,90 @@ public class Health : MonoBehaviour
 	[MinValue(0f)]
 	private float maxHealth = 2f;
 
+	[SerializeField]
+	[Tooltip("Can this object be damaged?")]
+	private bool isDamageable = true;
+
+	[SerializeField]
+	[Tooltip("Can this object be healed?")]
+	private bool isHealable = true;
+
+	[SerializeField, ShowIf("isHealable")]
+	[Tooltip("The amount of health regenerated per second.")]
+	[MinValue(0f)]
+	private float healthRegen = 0f;
+
+	[SerializeField, ShowIf("isHealable")]
+	[Tooltip("The amount of time before health regen can start.")]
+	[MinValue(0f)]
+	private float healthRegenDelay = 1f;
+
 	[Header("Events")]
-	public DamageEvent onDamage = new DamageEvent();
+	public HealthChangeEvent onDamage = new HealthChangeEvent();
+	public HealthChangeEvent onHeal = new HealthChangeEvent();
 	public UnityEvent onDie = new UnityEvent();
 
-	private float health;
+	private float currentHealth;
+	private float healingTime;
 
 	public bool IsDead
 	{
 		get
 		{
-			return health <= 0f;
+			return currentHealth <= 0f;
+		}
+	}
+
+	public bool IsDamageable
+	{
+		get
+		{
+			return isDamageable;
+		}
+		set
+		{
+			isDamageable = value;
+		}
+	}
+
+	public float CurrentHealth
+	{
+		get
+		{
+			return currentHealth;
+		}
+	}
+
+	public float CurrentHealthPercent
+	{
+		get
+		{
+			return currentHealth / maxHealth;
 		}
 	}
 
 	private void Awake()
 	{
-		health = maxHealth;
+		currentHealth = maxHealth;
+	}
+
+	private void Update()
+	{
+		if (Time.realtimeSinceStartup > healingTime)
+		{
+			Heal(healthRegen * Time.deltaTime);
+		}
 	}
 
 	public void Damage(float damage)
 	{
-		if (IsDead)
+		if (IsDead || !isDamageable)
 			return;
 
 		// Apply damage
-		var appliedDamage = Mathf.Min(health, damage);
-		health -= appliedDamage;
+		var appliedDamage = Mathf.Min(currentHealth, damage);
+		currentHealth -= appliedDamage;
+		healingTime = Time.realtimeSinceStartup + healthRegenDelay;
 		onDamage.Invoke(damage);
 
 		// Die if this killed us
@@ -46,7 +103,18 @@ public class Health : MonoBehaviour
 		}
 	}
 
+	public void Heal(float healing)
+	{
+		if (IsDead || !isHealable)
+			return;
+
+		// Apply healing
+		var appliedHealing = Mathf.Min(healing, maxHealth - currentHealth);
+		currentHealth += appliedHealing;
+		onHeal.Invoke(appliedHealing);
+	}
+
 	[System.Serializable]
-	public class DamageEvent : UnityEvent<float> { }
+	public class HealthChangeEvent : UnityEvent<float> { }
 }
 
