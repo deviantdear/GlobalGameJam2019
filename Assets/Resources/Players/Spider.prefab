@@ -403,6 +403,8 @@ GameObject:
   - component: {fileID: 114076348287804500}
   - component: {fileID: 136532168242351842}
   - component: {fileID: 114488968920274132}
+  - component: {fileID: 114907540971464116}
+  - component: {fileID: 114884624531996988}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -844,11 +846,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c976c30cce6a043ae319958d1c124f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boopsToDie: 2
   debounce: 1
-  knockBackDistance: 6
-  knockBackSpeed: 3
-  literallyFuckingDead:
+  knockBackDistance: 10
+  knockBackSpeed: 7
+--- !u!114 &114884624531996988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917837586206788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239ab2e33b4cdc04f80cfbdf449ee852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMask:
+    serializedVersion: 2
+    m_Bits: 131072
+  damage: 1
+  attackRate: 3
+--- !u!114 &114907540971464116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917837586206788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dce3a18191cd944e9a9b4d0084373ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  isDamageable: 1
+  isHealable: 0
+  healthRegen: 0
+  healthRegenDelay: 1
+  onDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114580966810113958}
+        m_MethodName: Knockback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Health+HealthChangeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Health+HealthChangeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDie:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114947268548969230}
@@ -898,9 +952,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.03
   m_Direction: 1
-  m_Center: {x: 0, y: 0.51, z: 0}
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!137 &137520030100266872
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

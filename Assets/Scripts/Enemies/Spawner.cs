@@ -17,11 +17,14 @@ public class Spawner : MonoBehaviour
 
     private float lastSpawn = 0f;
 
-	public void Spawn()
+	public void Spawn(int number = 1)
     {
         if (lastSpawn + spawnrate < Time.time)
         {
-            Instantiate(prefab, RandomCircle(spawnContainer.position, spawnRadius), spawnContainer.transform.rotation);
+            for(var i = 0; i < number; i++)
+            {
+                Instantiate(prefab, RandomCircle(spawnContainer.position, spawnRadius), spawnContainer.transform.rotation);
+            }
             lastSpawn = Time.time;
         }
     }
