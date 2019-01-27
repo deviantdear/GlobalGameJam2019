@@ -38,7 +38,7 @@ public class AirConsoleDPad : IAirConsoleInputReader
 	{
 		get
 		{
-			return !(up || down || left || right);
+			return up || down || left || right;
 		}
 	}
 

@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
 	private PlayerMovement movement;
 
 	[SerializeField]
+	[Tooltip("The Weapon used by the this player.")]
+	private Weapon weapon;
+
+	[SerializeField]
 	[Tooltip("The skins affecting this player.")]
 	private PlayerSkin[] skins;
 
@@ -96,6 +100,37 @@ public class Player : MonoBehaviour
 			skin.SetOwner(this);
 		}
 		onInitialize.Invoke();
+	}
+
+	private void Update()
+	{
+		if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))
+		{
+			// AirConsole controls
+			var controller = Toolbox.Input.GetController(DeviceId);
+			if (controller.Aim.Pressed)
+			{
+				weapon.PullTrigger();
+			}
+			else
+			{
+				weapon.ReleaseTrigger();
+			}
+		}
+		#if UNITY_EDITOR
+		else
+		{
+			// Editor controls
+			if(Input.GetButton("Shoot"))
+			{
+				weapon.PullTrigger();
+			}
+			else
+			{
+				weapon.ReleaseTrigger();
+			}
+		}
+		#endif
 	}
 
 	/// <summary>

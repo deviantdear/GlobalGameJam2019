@@ -6,6 +6,7 @@ using NDream.AirConsole;
 public class PlayerSpawner : MonoBehaviour
 {
 	const string PlayerPrefabsPath = "Players";
+	const float GizmosRadius = 0.3f;
 
 	[SerializeField]
 	private Transform[] spawnPoints;
@@ -68,6 +69,17 @@ public class PlayerSpawner : MonoBehaviour
 		{
 			AirConsole.instance.onDisconnect -= HandleDeviceConnect;
 			AirConsole.instance.onDisconnect -= HandleDeviceDisconnect;
+		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		foreach (var spawnPoint in spawnPoints)
+		{
+			Gizmos.color = Color.clear;
+			Gizmos.DrawSphere(spawnPoint.position, GizmosRadius);
+			Gizmos.color = Color.cyan;
+			Gizmos.DrawWireSphere(spawnPoint.position, GizmosRadius);
 		}
 	}
 }
