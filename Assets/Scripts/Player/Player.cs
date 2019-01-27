@@ -15,12 +15,18 @@ public class Player : MonoBehaviour
 	private PlayerMovement movement;
 
 	[SerializeField]
+	[Tooltip("The Weapon used by the this player.")]
+	private Weapon weapon;
+
+	[SerializeField]
 	[Tooltip("The skins affecting this player.")]
 	private PlayerSkin[] skins;
 
 	[Header("Events")]
-	public UnityEvent onInitialize;
-	public UnityEvent onDie;
+	public UnityEvent onInitialize = new UnityEvent();
+	public UnityEvent onReady = new UnityEvent();
+	public UnityEvent onUnready = new UnityEvent();
+	public UnityEvent onDie = new UnityEvent();
 
 	private int deviceId = -1;
 
@@ -86,16 +92,31 @@ public class Player : MonoBehaviour
 	/// Initialize the player controlled by the specified deviceId.
 	/// </summary>
 	/// <param name="deviceId">Device identifier.</param>
-	public void Initialize(int deviceId)
+	public void Initialize(int deviceId, bool autoReady=false)
 	{
 		this.deviceId = deviceId;
 		movement.SetOwner(this);
-		movement.enabled = true;
 		foreach (var skin in skins)
 		{
 			skin.SetOwner(this);
 		}
 		onInitialize.Invoke();
+		if(autoReady)
+		{
+			Ready();
+		}
+	}
+
+	public void Ready()
+	{
+		movement.Controllable = true;
+		onReady.Invoke();
+	}
+
+	public void Unready()
+	{
+		movement.Controllable = false;
+		onUnready.Invoke();
 	}
 
 	/// <summary>
@@ -103,8 +124,39 @@ public class Player : MonoBehaviour
 	/// </summary>
 	public void Die()
 	{
-		movement.enabled = false;
+		movement.Controllable = false;
 		onDie.Invoke();
+	}
+
+	private void Update()
+	{
+		if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))
+		{
+			// AirConsole controls
+			var controller = Toolbox.Input.GetController(DeviceId);
+			if (controller.Aim.Pressed)
+			{
+				weapon.PullTrigger();
+			}
+			else
+			{
+				weapon.ReleaseTrigger();
+			}
+		}
+		#if UNITY_EDITOR
+		else
+		{
+			// Editor controls
+			if(Input.GetButton("Shoot"))
+			{
+				weapon.PullTrigger();
+			}
+			else
+			{
+				weapon.ReleaseTrigger();
+			}
+		}
+		#endif
 	}
 }
 
