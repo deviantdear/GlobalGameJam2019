@@ -123,12 +123,14 @@ public class Player : MonoBehaviour
 	public void Ready()
 	{
 		isReady = true;
+		animator.SetBool("Ready", isReady);
 		onReady.Invoke();
 	}
 
 	public void Unready()
 	{
 		isReady = false;
+		animator.SetBool("Ready", isReady);
 		onUnready.Invoke();
 	}
 
@@ -143,6 +145,17 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+		// Toggle weapon drawn
+		if (animator.GetFloat("Weapon Drawn") == 1f)
+		{
+			weapon.gameObject.SetActive(true);
+		}
+		else
+		{
+			weapon.gameObject.SetActive(false);
+		}
+
+		// Weapon controls
 		if (isReady)
 		{
 			if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))

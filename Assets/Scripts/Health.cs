@@ -11,36 +11,36 @@ public class Health : MonoBehaviour
 	private float maxHealth = 2f;
 
 	[SerializeField]
-	[Tooltip("The amount of health regenerated per second.")]
-	[MinValue(0f)]
-	private float healthRegen = 0f;
-
-	[SerializeField]
-	[Tooltip("The amount of time before health regen can start.")]
-	[MinValue(0f)]
-	private float healthRegenDelay = 1f;
+	[Tooltip("Can this object be damaged?")]
+	private bool isDamageable = true;
 
 	[SerializeField]
 	[Tooltip("Can this object be healed?")]
 	private bool isHealable = true;
 
-	[SerializeField]
-	[Tooltip("Can this object be damaged?")]
-	private bool isDamageable = true;
+	[SerializeField, ShowIf("isHealable")]
+	[Tooltip("The amount of health regenerated per second.")]
+	[MinValue(0f)]
+	private float healthRegen = 0f;
+
+	[SerializeField, ShowIf("isHealable")]
+	[Tooltip("The amount of time before health regen can start.")]
+	[MinValue(0f)]
+	private float healthRegenDelay = 1f;
 
 	[Header("Events")]
 	public HealthChangeEvent onDamage = new HealthChangeEvent();
 	public HealthChangeEvent onHeal = new HealthChangeEvent();
 	public UnityEvent onDie = new UnityEvent();
 
-	private float health;
+	private float currentHealth;
 	private float healingTime;
 
 	public bool IsDead
 	{
 		get
 		{
-			return health <= 0f;
+			return currentHealth <= 0f;
 		}
 	}
 
@@ -56,9 +56,25 @@ public class Health : MonoBehaviour
 		}
 	}
 
+	public float CurrentHealth
+	{
+		get
+		{
+			return currentHealth;
+		}
+	}
+
+	public float CurrentHealthPercent
+	{
+		get
+		{
+			return currentHealth / maxHealth;
+		}
+	}
+
 	private void Awake()
 	{
-		health = maxHealth;
+		currentHealth = maxHealth;
 	}
 
 	private void Update()
@@ -75,8 +91,8 @@ public class Health : MonoBehaviour
 			return;
 
 		// Apply damage
-		var appliedDamage = Mathf.Min(health, damage);
-		health -= appliedDamage;
+		var appliedDamage = Mathf.Min(currentHealth, damage);
+		currentHealth -= appliedDamage;
 		healingTime = Time.realtimeSinceStartup + healthRegenDelay;
 		onDamage.Invoke(damage);
 
@@ -93,8 +109,8 @@ public class Health : MonoBehaviour
 			return;
 
 		// Apply healing
-		var appliedHealing = Mathf.Min(healing, maxHealth - health);
-		health += appliedHealing;
+		var appliedHealing = Mathf.Min(healing, maxHealth - currentHealth);
+		currentHealth += appliedHealing;
 		onHeal.Invoke(appliedHealing);
 	}
 

@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NaughtyAttributes;
+using UnityEngine.Events;
 
 public class Kid : MonoBehaviour
 {
 	[SerializeField, Required]
 	[Tooltip("The kid's health.")]
 	private Health health;
+
+	[SerializeField, Required]
+	[Tooltip("The kid's Animator.")]
+	private Animator animator;
 
 	public Health Health
 	{
@@ -29,9 +34,29 @@ public class Kid : MonoBehaviour
 		}
 	}
 
+	[Button("Find Animator")]
+	private void FindAnimator()
+	{
+		var foundAnimator = GetComponentInChildren<Animator>();
+		if (foundAnimator != animator)
+		{
+			animator = foundAnimator;
+			#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+			#endif
+		}
+	}
+
 	private void Awake()
 	{
+		health.onDamage.AddListener(HandleHealthChange);
+		health.onHeal.AddListener(HandleHealthChange);
 		health.onDie.AddListener(HandleDie);
+	}
+
+	private void HandleHealthChange(float change)
+	{
+		animator.SetFloat("Health Percent", health.CurrentHealthPercent);		
 	}
 
 	private void HandleDie()

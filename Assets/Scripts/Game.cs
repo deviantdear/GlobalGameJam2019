@@ -133,11 +133,13 @@ public class Game : MonoBehaviour
 		{
 			AddNewPlayer (deviceId);
 		}
+		UpdateAirConsoleGameState();
 	}
 
 	private void HandleConnect (int deviceId)
 	{
 		AddNewPlayer(deviceId);
+		UpdateAirConsoleGameState();
 	}
 
 	private void AddNewPlayer(int deviceId)
@@ -164,6 +166,11 @@ public class Game : MonoBehaviour
 				ResumeAbandoningGame();
 			}
 		}
+	}
+
+	private void UpdateAirConsoleGameState()
+	{
+		// TODO: Update the gamestate for all of the players?
 	}
 
 	private void HandleDisconnect (int deviceId)
