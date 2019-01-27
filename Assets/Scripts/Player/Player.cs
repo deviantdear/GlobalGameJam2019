@@ -116,6 +116,7 @@ public class Player : MonoBehaviour
 		onInitialize.Invoke();
 		if(autoReady)
 		{
+			animator.Play("Locomotion");
 			Ready();
 		}
 	}
@@ -140,6 +141,7 @@ public class Player : MonoBehaviour
 	public void Die()
 	{
 		isReady = false;
+		animator.SetTrigger("Disconnected");
 		onDie.Invoke();
 	}
 
