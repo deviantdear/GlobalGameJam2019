@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3506487
   hitEffects:
   - {fileID: 1290635262993612, guid: 672f8156e315a7743a0d1d3a5f72ce55, type: 2}
 --- !u!135 &135481830715362628
