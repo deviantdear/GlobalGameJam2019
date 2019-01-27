@@ -47,12 +47,7 @@ ModelImporter:
     4300000: GrossHand
     9500000: //RootNode
     13700000: GrossHand
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GrossHand1
-    second: {fileID: 2100000, guid: cd6e96fea49cc614882391444de96e24, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
