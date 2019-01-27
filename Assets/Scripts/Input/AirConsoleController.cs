@@ -32,6 +32,7 @@ public class AirConsoleController : IAirConsoleInputReader
 
 	public void Process(JToken data)
 	{
+//		Debug.Log(data.ToString());
 		move.Process(data);
 		aim.Process(data);
 	}
