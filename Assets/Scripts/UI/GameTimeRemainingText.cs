@@ -13,8 +13,8 @@ public class GameTimeRemainingText : MonoBehaviour
 
 	private void Update()
 	{
-		var minutes = Mathf.Floor(Toolbox.Game.GameTimeRemaining / 60f);
-		var seconds = Mathf.Floor(Toolbox.Game.GameTimeRemaining % 60f);
+		var minutes = Mathf.Max(0f, Mathf.Floor(Toolbox.Game.GameTimeRemaining / 60f));
+		var seconds = Mathf.Max(0f, Mathf.Floor(Toolbox.Game.GameTimeRemaining % 60f));
 		text.text = string.Format(format, minutes, seconds);
 	}
 }

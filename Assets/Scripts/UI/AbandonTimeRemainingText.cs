@@ -13,15 +13,8 @@ public class AbandonTimeRemainingText : MonoBehaviour
 
 	private void Update()
 	{
-		if (Toolbox.Game.State == Game.GameState.Abandoning)
-		{
-			var minutes = Mathf.Floor(Toolbox.Game.AbandonTimeRemaining / 60f);
-			var seconds = Mathf.Floor(Toolbox.Game.AbandonTimeRemaining % 60f);
-			text.text = string.Format(format, minutes, seconds);	
-		}
-		else
-		{
-			text.text = string.Empty;
-		}
+		var minutes = Mathf.Max(0f, Mathf.Floor(Toolbox.Game.AbandonTimeRemaining / 60f));
+		var seconds = Mathf.Max(0f, Mathf.Floor(Toolbox.Game.AbandonTimeRemaining % 60f));
+		text.text = string.Format(format, minutes, seconds);	
 	}
 }

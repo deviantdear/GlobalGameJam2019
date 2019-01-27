@@ -149,7 +149,7 @@ public class Game : MonoBehaviour
 		// [1]: spawn an editor player with keyboard controls
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			AddNewPlayer(-1);
+			AddNewPlayer(-1, true);
 		}
 		#endif
 
@@ -187,28 +187,28 @@ public class Game : MonoBehaviour
 		var connectedDevices = AirConsole.instance.GetControllerDeviceIds();
 		foreach (int deviceId in connectedDevices) 
 		{
-			AddNewPlayer (deviceId);
+			AddNewPlayer (deviceId, false);
 		}
 		UpdateAirConsoleGameState();
 	}
 
 	private void HandleConnect (int deviceId)
 	{
-		AddNewPlayer(deviceId);
+		AddNewPlayer(deviceId, true);
 		UpdateAirConsoleGameState();
 	}
 
-	private void AddNewPlayer(int deviceId)
+	private void AddNewPlayer(int deviceId, bool autoReady)
 	{
 		if (!players.ContainsKey(deviceId))
 		{
 			Debug.LogFormat("Added new player with id {0}", deviceId);
 			// Spawn a random Player character at a random spawn point
 			var prefab = playerPrefabs[Random.Range(0, playerPrefabs.Length)];
-			var spawnPointList = (state == GameState.Playing) ? dropInSpawnPoints : spawnPoints;
+			var spawnPointList = (state == GameState.Playing || state == GameState.Abandoning) ? dropInSpawnPoints : spawnPoints;
 			var spawnPoint = spawnPointList[Random.Range(0, spawnPointList.Length)];
 			var player = Instantiate<Player>(prefab, spawnPoint.position, spawnPoint.rotation);
-			player.Initialize(deviceId, state == GameState.Playing);
+			player.Initialize(deviceId, autoReady);
 			players.Add(deviceId, player);
 
 			if (state == GameState.WaitingForStart)
