@@ -1208,7 +1208,7 @@ MonoBehaviour:
   angleMin: 0
   angleMax: 360
   autospawn: 1
-  spawnrate: 3
+  spawnrate: 0.2
   prefab: {fileID: 1771595899917322, guid: fc14ada87ca1b83479cbc524a5e7e99e, type: 2}
   spawnContainer: {fileID: 1222072099}
 --- !u!4 &1222072099
