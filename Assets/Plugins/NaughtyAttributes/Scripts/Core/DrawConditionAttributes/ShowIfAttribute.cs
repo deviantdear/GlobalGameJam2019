@@ -15,19 +15,10 @@ namespace NaughtyAttributes
             Conditions = new string[1] { condition };
         }
 
-		public ShowIfAttribute(string condition, bool reversed)
-		{
-			ConditionOperator = ConditionOperator.And;
-			Conditions = new string[1] { condition };
-			Reversed = reversed;
-		}
-
         public ShowIfAttribute(ConditionOperator conditionOperator, params string[] conditions)
         {
             ConditionOperator = conditionOperator;
             Conditions = conditions;
         }
-
-
     }
 }

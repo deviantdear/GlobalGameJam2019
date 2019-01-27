@@ -28,8 +28,21 @@ public class PlayerMovement : PlayerComponent
 	[MinValue(0f)]
 	private float turnSpeed = 180f;
 
+	private bool controllable = false;
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 desiredForward;
+
+	public bool Controllable
+	{
+		get
+		{
+			return controllable;
+		}
+		set
+		{
+			controllable = value;
+		}
+	}
 
 	private void Awake()
 	{
@@ -38,7 +51,7 @@ public class PlayerMovement : PlayerComponent
 
 	private void Update()
 	{
-		if (owner.IsReady)
+		if (controllable)
 		{
 			if (owner.HasAirConsolePlayer && Toolbox.Input.HasController(owner.DeviceId))
 			{

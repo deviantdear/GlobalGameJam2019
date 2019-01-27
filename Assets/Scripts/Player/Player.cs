@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 	public UnityEvent onUnready = new UnityEvent();
 	public UnityEvent onDie = new UnityEvent();
 
-	private bool isReady = false;
 	private int deviceId = -1;
 
 	/// <summary>
@@ -40,18 +39,6 @@ public class Player : MonoBehaviour
 		get
 		{
 			return animator;
-		}
-	}
-
-	/// <summary>
-	/// Gets a value indicating whether this instance is ready.
-	/// </summary>
-	/// <value><c>true</c> if this instance is ready; otherwise, <c>false</c>.</value>
-	public bool IsReady
-	{
-		get
-		{
-			return isReady;
 		}
 	}
 
@@ -122,15 +109,13 @@ public class Player : MonoBehaviour
 
 	public void Ready()
 	{
-		isReady = true;
-		animator.SetBool("Ready", isReady);
+		movement.Controllable = true;
 		onReady.Invoke();
 	}
 
 	public void Unready()
 	{
-		isReady = false;
-		animator.SetBool("Ready", isReady);
+		movement.Controllable = false;
 		onUnready.Invoke();
 	}
 
@@ -139,53 +124,39 @@ public class Player : MonoBehaviour
 	/// </summary>
 	public void Die()
 	{
-		isReady = false;
+		movement.Controllable = false;
 		onDie.Invoke();
 	}
 
 	private void Update()
 	{
-		// Toggle weapon drawn
-		if (animator.GetFloat("Weapon Drawn") == 1f)
+		if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))
 		{
-			weapon.gameObject.SetActive(true);
-		}
-		else
-		{
-			weapon.gameObject.SetActive(false);
-		}
-
-		// Weapon controls
-		if (isReady)
-		{
-			if (HasAirConsolePlayer && Toolbox.Input.HasController(DeviceId))
+			// AirConsole controls
+			var controller = Toolbox.Input.GetController(DeviceId);
+			if (controller.Aim.Pressed)
 			{
-				// AirConsole controls
-				var controller = Toolbox.Input.GetController(DeviceId);
-				if (controller.Aim.Pressed)
-				{
-					weapon.PullTrigger();
-				}
-				else
-				{
-					weapon.ReleaseTrigger();
-				}
+				weapon.PullTrigger();
 			}
-			#if UNITY_EDITOR
 			else
 			{
-				// Editor controls
-				if (Input.GetButton("Shoot"))
-				{
-					weapon.PullTrigger();
-				}
-				else
-				{
-					weapon.ReleaseTrigger();
-				}
+				weapon.ReleaseTrigger();
 			}
-			#endif
 		}
+		#if UNITY_EDITOR
+		else
+		{
+			// Editor controls
+			if(Input.GetButton("Shoot"))
+			{
+				weapon.PullTrigger();
+			}
+			else
+			{
+				weapon.ReleaseTrigger();
+			}
+		}
+		#endif
 	}
 }
 

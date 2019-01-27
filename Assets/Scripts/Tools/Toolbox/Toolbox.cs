@@ -23,11 +23,5 @@ public class Toolbox : Singleton<Toolbox>
 		}
 	}
 
-	public static Game Game
-	{
-		get;
-		set;
-	}
-
 	protected Toolbox () {} // guarantee this will be always a singleton only
 }
