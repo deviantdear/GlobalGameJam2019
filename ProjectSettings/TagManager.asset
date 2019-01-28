@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlatformSphere
+  - bedframe
   layers:
   - Default
   - TransparentFX
@@ -20,13 +22,13 @@ TagManager:
   - 
   - 
   - 
+  - Player
+  - Player Wall
+  - Kid
+  - Monster
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Blanket
+  - Blanket Collider
   - 
   - 
   - 
