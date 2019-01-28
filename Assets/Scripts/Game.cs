@@ -249,6 +249,7 @@ public class Game : MonoBehaviour
 	{
 		// TODO: Restart game state and reset players as if they were using Ready
 		Debug.LogError("Restarting Game (TODO)");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	private void StartGame()

@@ -131,7 +131,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.9784946
-        functionName: leftFootsteo
+        functionName: leftFootstep
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

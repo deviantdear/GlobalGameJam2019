@@ -35,7 +35,7 @@ public class BedDemon : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        startDelay();
+//        startDelay();
         startGameLighting();
 	}
 	
