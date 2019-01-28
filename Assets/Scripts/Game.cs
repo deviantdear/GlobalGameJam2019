@@ -239,7 +239,8 @@ public class Game : MonoBehaviour
 		}
 
 		// If all players have left and the game is playing, lose the game after a timer
-		if (state == GameState.Playing)
+		var connectedDevices = AirConsole.instance.GetControllerDeviceIds();
+		if (state == GameState.Playing && connectedDevices.Count == 0)
 		{
 			StartAbandoningGame();
 		}
@@ -249,7 +250,14 @@ public class Game : MonoBehaviour
 	{
 		// TODO: Restart game state and reset players as if they were using Ready
 		Debug.LogError("Restarting Game (TODO)");
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		kid.Health.Heal(Mathf.Infinity);
+
+		foreach (var enemy in FindObjectsOfType<BoopTheTerror>())
+		{
+			Destroy(enemy.gameObject);
+		}
+
+		StartGame();
 	}
 
 	private void StartGame()

@@ -14,6 +14,7 @@ public class Kid : MonoBehaviour
 	private Animator animator;
 
 	[Header("Events")]
+	public UnityEvent onSleep = new UnityEvent();
 	public UnityEvent onWakeUpHappy = new UnityEvent();
 	public UnityEvent onWakeUpSad = new UnityEvent();
 	public UnityEvent onWakeUp = new UnityEvent();
@@ -71,6 +72,11 @@ public class Kid : MonoBehaviour
 		{
 			game.LoseGame();
 		}
+	}
+
+	public void Sleep()
+	{
+		onSleep.Invoke();
 	}
 
 	public void WakeUp(bool happy)
