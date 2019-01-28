@@ -1,0 +1,33 @@
+.view {
+    display:none;
+}
+
+.pumpkinimg {
+    background-image: url('Cat_Pumpkin_Controller.png');
+     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.maximg {
+    background-image: url('Cat_Max_Controller.png');
+     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.pacoimg {
+    background-image: url('Cat_Paco_Controller.png');
+     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.pixelimg {
+    background-image: url('Cat_Pixel_Controller.png');
+     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+
