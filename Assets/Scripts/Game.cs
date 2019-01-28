@@ -308,6 +308,12 @@ public class Game : MonoBehaviour
 	{
 		Debug.Log("Game Won");
 		onWinGame.Invoke();
+
+		foreach (var enemy in FindObjectsOfType<BoopTheTerror>())
+		{
+			Destroy(enemy.gameObject);
+		}
+
 		EndGame();
 	}
 

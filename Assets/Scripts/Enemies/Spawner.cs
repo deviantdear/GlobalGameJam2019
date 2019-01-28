@@ -10,7 +10,8 @@ public class Spawner : MonoBehaviour
     public float angleMax = 360f;
 
     public bool autospawn = true;
-    public float spawnrate = .5f;
+	public float spawnrate = .5f;
+	public float spawnrateMultiplier = .5f;
 
     [SerializeField] GameObject prefab;
     [SerializeField] Transform spawnContainer;
@@ -19,7 +20,7 @@ public class Spawner : MonoBehaviour
 
 	public void Spawn(int number = 1)
     {
-        if (lastSpawn + spawnrate < Time.time)
+		if (lastSpawn + spawnrate * spawnrateMultiplier < Time.time)
         {
             for(var i = 0; i < number; i++)
             {
