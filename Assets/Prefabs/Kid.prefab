@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4615960047859338}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Awake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 114571964938423266}
   - component: {fileID: 198511102777407706}
   - component: {fileID: 199292856120126440}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Zs - Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4234464643149084}
   - component: {fileID: 198043929653430862}
   - component: {fileID: 199301081470144672}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Teardrops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 33558259573751184}
   - component: {fileID: 23959535790287954}
   - component: {fileID: 114469453848071668}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: KidEyes:KidEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 114913605315648702}
   - component: {fileID: 136130507670234618}
   - component: {fileID: 95670596623892044}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Kid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 114730715797264588}
   - component: {fileID: 198290460415017028}
   - component: {fileID: 199843132692666934}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Teardrops - Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4183083254312308}
   - component: {fileID: 198179975300131402}
   - component: {fileID: 199750684085482828}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Teardrops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4446864388476382}
   - component: {fileID: 198306756244696894}
   - component: {fileID: 199419641541527994}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Teardrops (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 33637797171781376}
   - component: {fileID: 23024414082705572}
   - component: {fileID: 114952950082781130}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Kid_AngerEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4893499277995256}
   - component: {fileID: 33906969216977714}
   - component: {fileID: 23584440353250476}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Kid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4708149017432620}
   - component: {fileID: 198153188347152876}
   - component: {fileID: 199242776756643824}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Zs - Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 4744152431607626}
   - component: {fileID: 33391029470470490}
   - component: {fileID: 23460456341997414}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Kid_OpenEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 4054286156394106}
   - component: {fileID: 198143772718516078}
   - component: {fileID: 199282862556644846}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Teardrops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 114401150066683588}
   - component: {fileID: 198267796400129994}
   - component: {fileID: 199206436293371780}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Zs - High
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 4588047568026598}
   - component: {fileID: 198329957105463634}
   - component: {fileID: 199650339020656450}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Teardrops (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4478785627972310}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Sleep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,6 +708,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 114913605315648702}
   animator: {fileID: 95670596623892044}
+  onSleep:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 23584440353250476}
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: b028132af32383f4ab48ab88eab3dc4a,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1942710247518242}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1028916196497574}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1288508606798712}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   onWakeUpHappy:
     m_PersistentCalls:
       m_Calls:

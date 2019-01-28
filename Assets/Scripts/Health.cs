@@ -115,6 +115,12 @@ public class Health : MonoBehaviour
 		}
 	}
 
+	public void Revive()
+	{
+		currentHealth = maxHealth;
+		onHeal.Invoke(0f);
+	}
+
 	public void Heal(float healing)
 	{
 		if (IsDead || !isHealable)

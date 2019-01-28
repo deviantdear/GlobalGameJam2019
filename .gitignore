@@ -1,8 +1,6 @@
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
-[Bb]uild/
-[Bb]uilds/
 [Ll]ogs/
 
 # Never ignore Asset meta data
@@ -49,3 +47,4 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+Builds/
